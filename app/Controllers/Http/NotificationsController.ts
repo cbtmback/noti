@@ -91,7 +91,6 @@ async function getSites() {
                 reject(rejectError)
             })
         })
-
     })
     return resultPromise
 }
@@ -202,9 +201,7 @@ async function createWebHook(urlServiceWebhook: String, sitesNeedWebHook: Array<
 
 
 export default class NotificationsController {
-
-    
-// REGISTER URL WEBHOOK TO LARAVEL FORGE ROUTE --- GET: /createWebhook
+  // REGISTER URL WEBHOOK TO LARAVEL FORGE ROUTE --- GET: /createWebhook
     public async index({ response }) {
         try {
             await getServers().then(() => {
@@ -243,9 +240,9 @@ export default class NotificationsController {
             return response.status(500).send(ex.message)
         }
     }
-    
 
-    /// SEND LINE NOTIFICATION ROUTE --- POST: /notification  
+
+    /// SEND LINE NOTIFICATION ROUTE --- POST: /notification
     public async sendNotification({ request }) {
         const lineToken = Env.get('LINE_NOTIFY_TOKEN');
         const notifySDK = require('line-notify-sdk')
