@@ -23,6 +23,7 @@ import Route from '@ioc:Adonis/Core/Route'
 
 Route.group(() => {
   Route.post('/notification', 'NotificationsController.sendNotification')
-  Route.get('/createWebHook', 'NotificationsController.index')
+  // Route.get('/createWebHook', 'NotificationsController.index')
+  // Route.get('/v2/createWebHook', 'V2NotificationsController.index')
 }).prefix('/api')
 

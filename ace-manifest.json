@@ -1,5 +1,17 @@
 {
   "commands": {
+    "create:webhook": {
+      "settings": {
+        "loadApp": true,
+        "stayAlive": false
+      },
+      "commandPath": "./commands/CreateWebhook",
+      "commandName": "create:webhook",
+      "description": "Register Webhook with Laravel Forge",
+      "args": [],
+      "aliases": [],
+      "flags": []
+    },
     "dump:rcfile": {
       "settings": {},
       "commandPath": "@adonisjs/core/build/commands/DumpRc",

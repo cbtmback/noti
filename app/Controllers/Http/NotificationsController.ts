@@ -111,7 +111,7 @@ async function createObjectWebHooks(element) {
             resolve(createObjectWebHooks)
         }).catch((error) => {
             let rejectError: OptionsError = {
-                title: "LARAVEL FROGE GET WEBHOOK : ",
+                title: "LARAVEL FORGE GET WEBHOOK : ",
                 status: error.response.status,
                 message: error.response.statusText
             };
@@ -135,7 +135,7 @@ async function getWebHook() {
             resolve(webhookArray)
         } catch (error) {
             let rejectError: OptionsError = {
-                title: "LARAVEL FROGE GET WEBHOOK : ",
+                title: "LARAVEL FORGE GET WEBHOOK : ",
                 status: error.response.status,
                 message: error.response.statusText
             };
@@ -164,11 +164,10 @@ async function sendUrlToForge(url: String, obj: any) {
             resolve(NewWebhookArray)
         }).catch((error) => {
             let rejectError: OptionsError = {
-                title: "LARAVEL FROGE CREATE WEBHOOK : ",
+                title: "LARAVEL FORGE CREATE WEBHOOK : ",
                 status: error.response.status,
                 message: error.response.statusText
             };
-            console.log(rejectError)
             reject(rejectError)
         })
     })
@@ -188,7 +187,7 @@ async function createWebHook(urlServiceWebhook: String, sitesNeedWebHook: Array<
             resolve("success")
         } catch (error) {
             let rejectError: OptionsError = {
-                title: "LARAVEL FROGE CREATE WEBHOOK : ",
+                title: "LARAVEL FORGE CREATE WEBHOOK : ",
                 status: error.status,
                 message: error.statusText
             };
@@ -205,19 +204,16 @@ export default class NotificationsController {
     public async index({ response }) {
         try {
             await getServers().then(() => {
-                console.log("GET SERVER SUCEESS")
             }).catch((error) => {
                 return response.status(error.status).send(error.title + error.message)
             })
 
             await getSites().then(() => {
-                console.log("GET SITES SUCEESS")
             }).catch((error) => {
                 return response.status(error.status).send(error.title + error.message)
             })
 
             await getWebHook().then(() => {
-                console.log("GET WEBHOOK SUCEESS")
             }).catch((error) => {
                 return response.status(error.status).send(error.title + error.message)
             })
@@ -226,7 +222,6 @@ export default class NotificationsController {
             if (sitesNeedWebHook.length > 0) {
                 const urlServiceWebhook = `${Env.get('APP_URL')}/notification`
                 await createWebHook(urlServiceWebhook, sitesNeedWebHook).then(() => {
-                    console.log("CREATE WEBHOOK SUCEESS")
                 }).catch((error) => {
                     return response.status(error.status).send(error.title + error.message)
                 })
@@ -259,7 +254,6 @@ export default class NotificationsController {
             try {
                 const info = await notify.getStatus(lineToken)
                 if (info.status === 200) {
-
                     let message = "";
                     if (status) message += `\n${status}`
                     if (serverName) message += `\n${serverName}`
